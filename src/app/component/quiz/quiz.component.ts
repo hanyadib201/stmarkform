@@ -45,6 +45,7 @@ export class QuizComponent implements OnInit {
       next: (response) => {
         this.quiz = response.data;
         this.initializeAnswers();
+        console.log( this.quiz) ;
       },
       error: (err) => console.error('Error loading quiz:', err),
     });
