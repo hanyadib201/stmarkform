@@ -1,0 +1,85 @@
+<div class="container mt-4">
+    <img src="https://garasform.garassolutions.com//Competitions/20240111213542379_CompetetionLogo_scaled_4a490428-abdd-41ce-8ac5-0a87b52cf2c4.jpg" style="width: 100%; height: auto" />
+
+    <h2 class="mb-4">Add Questions to Quiz</h2>
+  
+
+
+    <form (ngSubmit)="submitAllQuestions()">
+        <div *ngFor="let q of questions.controls; let i = index" [formGroup]="getQuestionFormGroup(i)" class="card mb-4">
+
+        <div class="card-body">
+          <h5 class="card-title">Question {{ i + 1 }}</h5>
+   <!-- Degree Field -->
+        <div class="form-group mb-2">
+          <label>Degree</label>
+          <input type="number" class="form-control" formControlName="degree" placeholder="Enter the degree for this question" step="0.1" />
+        </div>
+
+          <div class="form-group mb-2">
+            <label>Question Text</label>
+            <input class="form-control" formControlName="text" placeholder="Enter question" />
+          </div>
+  
+          <div class="form-group mb-2">
+            <label>Type</label>
+            <select class="form-select" formControlName="type" (change)="onTypeChange(i)">
+              <option value="multiple-choice">Multiple Choice</option>
+              <option value="matching">Matching</option>
+              <option value="true-false">True/False</option>
+              <option value="fill-blank">Fill in the Blank</option>
+            </select>
+          </div>
+  
+          <!-- <div *ngIf="q.get('type')?.value === 'true-false' || q.get('type')?.value === 'fill-blank'" class="mb-2">
+            <label>Correct Answer</label>
+            <input class="form-control" formControlName="correctTextAnswer" placeholder="Correct answer" />
+          </div> -->
+  
+          <!-- Correct Answer Input for True/False and Fill-in-the-Blank -->
+        <div *ngIf="q.get('type')?.value === 'true-false' || q.get('type')?.value === 'fill-blank'" class="mb-2">
+          <label>Correct Answer</label>
+          <!-- For True/False, show dropdown for "صح" (True) or "خطأ" (False) -->
+          <ng-container *ngIf="q.get('type')?.value === 'true-false'">
+            <select class="form-control" formControlName="correctTextAnswer">
+              <option value="true">صح</option>
+              <option value="false">خطأ</option>
+            </select>
+          </ng-container>
+          <!-- For Fill in the Blank, just a text field -->
+          <ng-container *ngIf="q.get('type')?.value === 'fill-blank'">
+            <input class="form-control" formControlName="correctTextAnswer" placeholder="Enter correct answer" />
+          </ng-container>
+        </div>
+
+
+
+          <div *ngIf="q.get('type')?.value === 'multiple-choice' || q.get('type')?.value === 'matching'">
+            <label>Options</label>
+            <div formArrayName="options">
+              <div *ngFor="let opt of getOptions(i).controls; let j = index" [formGroupName]="j" class="row mb-2">
+                <div class="col-md-5">
+                  <input class="form-control" formControlName="text" placeholder="Option text" />
+                </div>
+                <div *ngIf="q.get('type')?.value === 'multiple-choice'" class="col-md-3">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" formControlName="isCorrect" />
+                    <label class="form-check-label">Correct</label>
+                  </div>
+                </div>
+                <div *ngIf="q.get('type')?.value === 'matching'" class="col-md-4">
+                  <input class="form-control" formControlName="matchingQuestion" placeholder="Matching pair" />
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-primary" (click)="addOption(i)">Add Option</button>
+          </div>
+        </div>
+      </div>
+  
+      <button type="button" class="btn btn-outline-success mb-3" (click)="addQuestion()">+ Add Another Question</button>
+      <br />
+      <button class="btn btn-success" type="submit">Submit All Questions</button>
+    </form>
+  </div>
+  
