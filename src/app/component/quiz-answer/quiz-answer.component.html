@@ -1,0 +1,15 @@
+<div class="quiz-container" dir="rtl">
+    <h1 class="title">الأسئلة والإجابات</h1>
+    
+    <div *ngFor="let item of questions" class="qa-card">
+      <div class="question">
+        <h3>السؤال:</h3>
+        <p>{{item.text}}</p>
+      </div>
+      
+      <div class="answer">
+        <h3>الإجابة:</h3>
+        <p>{{item.correctTextAnswer}}</p>
+      </div>
+    </div>
+  </div>

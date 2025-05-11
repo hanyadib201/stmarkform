@@ -1,0 +1,155 @@
+.container {
+  padding: 20px;
+  direction: rtl;
+}
+
+  /* تنسيق البطاقات */
+  /* تنسيق الكارت */
+.card {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 20px;
+  box-sizing: border-box; /* لضمان احتساب البادينج ضمن الأبعاد */
+}
+
+  
+  /* تنسيق النموذج */
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+      text-align: right;
+
+  }
+
+ 
+  
+  /* تنسيق الحقول */
+  input, select, button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+  
+  button {
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #218838;
+  }
+  
+  /* تنسيق العناوين */
+  h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  /* تنسيق الصور */
+  img {
+    width: 100%;
+    height: 200px; /* الحفاظ على نسبة العرض إلى الارتفاع */
+    object-fit: contain; /* ملاءمة الصورة داخل الحاوية دون تشويه */
+  }
+  
+  /* تنسيق الحقول المتقدمة */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  /* تنسيق الحقول الاختيارية */
+  .form-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* تنسيق الأزرار */
+  .btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .btn-outline-primary {
+    background-color: transparent;
+    border: 1px solid #007bff;
+    color: #007bff;
+  }
+  
+  .btn-outline-success {
+    background-color: transparent;
+    border: 1px solid #28a745;
+    color: #28a745;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    color: white;
+  }
+  .form-check-inline {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+  .card {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 20px;
+  /* احذف width و max-width ليأخذ حجم col */
+}
+
+  
+  /* التفاعل مع الجوال */
+ @media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+    .card {
+    padding: 15px;
+  }
+
+  .form-group {
+    gap: 3px;
+  }
+
+  .row {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .col-12, .col-md-5, .col-md-3, .col-md-4 {
+    width: 100% !important;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  input, select, button {
+    font-size: 0.9rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  img {
+    height: auto;
+    object-fit: contain;
+  }
+}

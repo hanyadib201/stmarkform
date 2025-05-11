@@ -1,0 +1,140 @@
+<div class="container">
+
+      
+      <img
+        src="https://garasform.garassolutions.com//Competitions/20240111213542379_CompetetionLogo_scaled_4a490428-abdd-41ce-8ac5-0a87b52cf2c4.jpg"
+        class="img-fluid mb-3"
+        alt="Logo"
+      />
+
+      <h2 class="text-center mb-4">إضافة أسئلة للاختبار</h2>
+
+      <form (ngSubmit)="submitAllQuestions()">
+        <div
+          *ngFor="let q of questions.controls; let i = index"
+          [formGroup]="getQuestionFormGroup(i)"
+          class="card mb-4"
+        >
+          <div class="card-body">
+            <h5 class="card-title">السؤال {{ i + 1 }}</h5>
+
+            <!-- درجة السؤال -->
+           
+
+            <!-- نص السؤال -->
+            <div class="form-group mb-2">
+              <label>نص السؤال</label>
+              <input
+                class="form-control"
+                formControlName="text"
+                placeholder="أدخل نص السؤال"
+              />
+            </div>
+
+            <!-- نوع السؤال -->
+            <div class="form-group mb-2">
+              <label>نوع السؤال</label>
+              <select
+                class="form-select"
+                formControlName="type"
+                (change)="onTypeChange(i)"
+              >
+                <option value="multiple-choice">اختيار من متعدد</option>
+                <option value="matching">مطابقة</option>
+                <option value="true-false">صح أو خطأ</option>
+                <option value="pictureSummry">ملخص بصورة</option>
+                <option value="fill-blank">املأ الفراغ</option>
+                <option value="pdfSummry">ملخص PDF</option>
+                <option value="youtubeSummry">ملخص فيديو يوتيوب</option>
+              </select>
+            </div>
+
+            <!-- الإجابة الصحيحة أو الرابط -->
+            <div
+              *ngIf="['true-false', 'fill-blank', 'pictureSummry', 'pdfSummry', 'youtubeSummry'].includes(q.get('type')?.value)"
+              class="mb-2"
+            >
+              <label *ngIf="q.get('type')?.value === 'true-false'">الإجابة الصحيحة</label>
+              <label *ngIf="['pictureSummry', 'pdfSummry', 'youtubeSummry'].includes(q.get('type')?.value)">رابط المحتوى</label>
+              <label *ngIf="q.get('type')?.value === 'fill-blank'">الإجابة الصحيحة</label>
+
+              <!-- صح وخطأ -->
+              <ng-container *ngIf="q.get('type')?.value === 'true-false'">
+                <select class="form-control" formControlName="correctTextAnswer">
+                  <option value="true">صح</option>
+                  <option value="false">خطأ</option>
+                </select>
+              </ng-container>
+
+              <!-- املأ الفراغ -->
+              <ng-container *ngIf="q.get('type')?.value === 'fill-blank'">
+                <input
+                  class="form-control"
+                  formControlName="correctTextAnswer"
+                  placeholder="الإجابة الصحيحة"
+                />
+              </ng-container>
+
+              <!-- الروابط -->
+              <ng-container *ngIf="['pictureSummry', 'pdfSummry', 'youtubeSummry'].includes(q.get('type')?.value)">
+                <input
+                  class="form-control"
+                  formControlName="url"
+                  placeholder="أدخل الرابط"
+                />
+              </ng-container>
+            </div>
+
+            <!-- الخيارات (اختيار من متعدد / مطابقة) -->
+            <div *ngIf="q.get('type')?.value === 'multiple-choice' || q.get('type')?.value === 'matching'">
+              <label>الخيارات</label>
+              <div formArrayName="options">
+                <div
+                  *ngFor="let opt of getOptions(i).controls; let j = index"
+                  [formGroupName]="j"
+                  class="row mb-2"
+                >
+                  <div class="col-12 col-md-5">
+                    <input class="form-control" formControlName="text" placeholder="نص الخيار" />
+                  </div>
+
+                  <div *ngIf="q.get('type')?.value === 'multiple-choice'" class="col-12 col-md-3">
+                    <div class="form-check form-check-inline">
+                      <input type="checkbox" class="form-check-input" formControlName="isCorrect" />
+                      <label class="form-check-label">صحيح</label>
+                    </div>
+                  </div>
+
+                  <div *ngIf="q.get('type')?.value === 'matching'" class="col-12 col-md-4">
+                    <input class="form-control" formControlName="matchingQuestion" placeholder="الخيار المطابق" />
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn btn-sm btn-outline-primary" (click)="addOption(i)">
+                + إضافة خيار
+              </button>
+            </div>
+          </div>
+
+           <div class="form-group mb-2">
+              <label>الدرجة</label>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="degree"
+                placeholder="أدخل درجة هذا السؤال"
+                step="0.1"
+              />
+            </div>
+        </div>
+
+        <!-- زر إضافة سؤال جديد -->
+        <button type="button" class="btn btn-outline-success mb-3" (click)="addQuestion()">
+          + إضافة سؤال آخر
+        </button>
+
+        <!-- زر إرسال -->
+        <button class="btn btn-success" type="submit">إرسال كل الأسئلة</button>
+      </form>
+    </div>
+  

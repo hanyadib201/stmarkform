@@ -1,0 +1,34 @@
+/* Apply background to the entire site */
+html, body {
+    height: 100%; /* Ensure full height of the page */
+    margin: 20; /* Remove default margin */
+background: linear-gradient(to right, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), #6a11cb;
+
+    font-family: Arial, sans-serif; /* Set default font */
+     direction: rtl;
+  text-align: right;
+  }
+  
+  /* Optionally, style the quiz container if you need it to stand out */
+  .quiz-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: rgb(230, 17, 17); /* White background for quiz container */
+    border-radius: 8px; /* Optional: Round corners for the container */
+  }
+  /* الحاوية الرئيسية */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* محاذاة العناصر من الأعلى */
+  min-height: 100vh;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box; /* لضمان احتساب البادينج ضمن الأبعاد */
+}
