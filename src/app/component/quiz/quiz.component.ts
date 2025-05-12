@@ -97,7 +97,7 @@ export class QuizComponent implements OnInit {
     this.quiz.questions.forEach((q) => {
       const answerEntry: any = { questionId: q.id };
 
-      if (q.type === 'true-false' || q.type === 'fill-blank') {
+      if (q.type === 'true-false' || q.type === 'fill-blank' || q.type === 'pictureSummry' || q.type === 'pdfSummry' || q.type === 'youtubeSummry' ) {
         answerEntry.answerText = this.userAnswers[q.id];
         answerEntry.type = q.type;
       } else if (q.type === 'multiple-choice') {
