@@ -30,6 +30,5 @@ export class QuizService {
   }
   getQuestionsWithAnswers(quizId: number) {
     return this.http.get(`https://hanyadib606.bsite.net/api/UserAnswers?QuizId=${quizId}`);
-    //return this.http.get(`https://localhost:44355/api/UserAnswers?QuizId=${quizId}`);
   }
 }
