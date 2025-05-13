@@ -20,7 +20,8 @@ export class UserQuestionAnswerComponent implements OnInit {
   ngOnInit(): void {
     const quizId = 230;         // ← قيم حقيقية أو من Route أو form
     const questionId = 0;
-    const userId = 'c6f5a169-8b2b-46c4-a104-2df865d92b0f';
+    //const userId = 'c6f5a169-8b2b-46c4-a104-2df865d92b0f';
+    const userId: string | undefined = undefined; // أو قيمة أخرى مثل null
     const questionType = '';
 
     this.userAnswerService
