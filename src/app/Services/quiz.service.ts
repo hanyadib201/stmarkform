@@ -25,8 +25,8 @@ export class QuizService {
   }
 
   submitUserAnswers(data: UserAnswer) {
-    return this.http.post('https://hanyadib606.bsite.net/api/UserAnswers', data);
-    //return this.http.post('https://localhost:44355/api/UserAnswers', data);
+    //return this.http.post('https://hanyadib606.bsite.net/api/UserAnswers', data);
+    return this.http.post('https://localhost:44355/api/UserAnswers', data);
   }
   getQuestionsWithAnswers(quizId: number) {
     return this.http.get(`https://hanyadib606.bsite.net/api/UserAnswers?QuizId=${quizId}`);

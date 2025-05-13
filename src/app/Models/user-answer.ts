@@ -1,5 +1,6 @@
 export interface UserAnswer { quizId: number;
     userId: string;
+    userName: string;
     answers: {
       questionId: number;
       type : string ;
