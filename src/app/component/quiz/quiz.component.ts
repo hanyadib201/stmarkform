@@ -125,6 +125,7 @@ export class QuizComponent implements OnInit {
       next: (res) => {
         this.isSubmitted = true;
         console.log('Answers submitted successfully:', res);
+        alert("sending");
         this.resetQuizState();
       },
       error: (err) => {

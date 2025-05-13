@@ -1,0 +1,35 @@
+<div *ngIf="data">
+  <h2>المسابقة: {{ data.quizName }}</h2>
+  
+  <div *ngFor="let user of data.users">
+    <h3>الاسم: {{ user.userName }}</h3>
+    
+    <table border="1" style="width: 100%; margin-bottom: 20px;">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Degree</th>
+          <th>Answer</th>
+          <th>Submit Degree</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let q of user.questions">
+          <td>{{ q.title }}</td>
+          <td>{{ q.degree }}</td>
+          <td>{{ q.answer }}</td>
+          <td>
+            <input
+              type="number"
+              min="0"
+              max="{{ q.degree }}"
+              [(ngModel)]="q.submittedDegree"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- <button (click)="submitDegrees()">Submit Degrees</button> -->
+</div>
