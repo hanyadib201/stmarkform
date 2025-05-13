@@ -2,6 +2,7 @@ export interface QuestionManualVM {
   title: string;
   degree: number | null;
   answer: string;
+  questionId:number ;
   submittedDegree?: number; // لدرجة يقوم المستخدم بإدخالها
 }
 

@@ -25,10 +25,7 @@ export class QuizService {
   }
 
   submitUserAnswers(data: UserAnswer) {
-<<<<<<< HEAD
     
-=======
->>>>>>> e44ef8a7e5956d469afca160b2e94af884913ec6
     //return this.http.post('https://hanyadib606.bsite.net/api/UserAnswers', data);
     return this.http.post('https://localhost:44355/api/UserAnswers', data);
   }
