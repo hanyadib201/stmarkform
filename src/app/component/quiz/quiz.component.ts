@@ -90,10 +90,10 @@ export class QuizComponent implements OnInit {
     const payload: UserAnswer = {
       quizId: this.quizId,
       userId: this.quiz.userId,
+      userName: this.quiz.userName,
 
       answers: [],
     };
-
     this.quiz.questions.forEach((q) => {
       const answerEntry: any = { questionId: q.id };
 
@@ -120,7 +120,7 @@ export class QuizComponent implements OnInit {
 
       payload.answers.push(answerEntry);
     });
-    console.log(payload);
+   // console.log(payload);
     this.quizService.submitUserAnswers(payload).subscribe({
       next: (res) => {
         this.isSubmitted = true;

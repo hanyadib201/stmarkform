@@ -110,10 +110,13 @@
         <div class="navigation">
           <button *ngIf="currentQuestionIndex < quiz.questions.length - 1" (click)="nextQuestion()"
             type="button">التالي</button>
+            <button *ngIf="currentQuestionIndex === quiz.questions.length - 1" type="submit">إرسال
+            الإجابات</button>
+            <!-- <button *ngIf="currentQuestionIndex === quiz.questions.length - 1" (click)="submitQuiz()">إرسال
+            الإجابات</button> -->
           <button (click)="prevQuestion()" [disabled]="currentQuestionIndex === 0" type="button">السابق</button>
           
-          <button *ngIf="currentQuestionIndex === quiz.questions.length - 1" (click)="submitQuiz()">إرسال
-            الإجابات</button>
+          
         </div>
       </div>
   

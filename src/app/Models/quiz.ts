@@ -6,6 +6,7 @@ export interface Quiz { id: number;
     from: string;
     to: string;
     userId: string;
+    userName: string;
     imagePath: string;
     questions: Question[];
 }
