@@ -18,12 +18,23 @@ export class UserQuestionAnswerService {
     questionType?: string
   ): Observable<UserQuestionAnswerManualVM> {
     const headers = new HttpHeaders({
-      QuizId: quizId.toString(),
+      //QuizId: quizId.toString(),
       QuestionId: questionId.toString(),
       ...(userId ? { UserId: userId } : {}),
       ...(questionType ? { QuestionType: questionType } : {}),
     });
 
-    return this.http.get<UserQuestionAnswerManualVM>(this.apiUrl, { headers });
+    return this.http.get<UserQuestionAnswerManualVM>(`https://localhost:44355/api/UserQuestionAnswerManual?QuizId=${quizId}`, { headers });
   }
+
+  // Add this to user-question-answer.service.ts
+postUserAnswerByAdmin(data: {
+  userId: string;
+  quizId: number;
+  questionId: number;
+  degree: number;
+}): Observable<any> {
+  return this.http.post(`${this.apiUrl}`, data);
+}
+
 }

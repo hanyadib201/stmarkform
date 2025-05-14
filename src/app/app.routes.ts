@@ -9,6 +9,6 @@ export const routes: Routes =
     {path: 'quiz/:quizId/:token', component:QuizComponent},
     { path: 'create/:quizId/:token', component: CreateQuestionComponent },
     { path: 'answer/:quizId', component: QuizAnswerComponent },
-    { path: 'test', component: UserQuestionAnswerComponent },
+    { path: 'test/:quizId', component: UserQuestionAnswerComponent },
 
 ];
