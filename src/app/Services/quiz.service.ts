@@ -9,8 +9,8 @@ import { UserAnswer } from '../Models/user-answer';
 })
 export class QuizService {
 
-   //private apiUrl = 'https://localhost:44355/api/Quizzes/QuizId';
-  private apiUrl = 'https://hanyadib606.bsite.net/api/Quizzes/QuizId';
+   private apiUrl = 'https://localhost:44355/api/Quizzes/QuizId';
+ // private apiUrl = 'https://hanyadib606.bsite.net/api/Quizzes/QuizId';
 
   constructor(private http: HttpClient) { }
   getQuiz(quizId: number, token: string): Observable<any> {
@@ -25,7 +25,6 @@ export class QuizService {
   }
 
   submitUserAnswers(data: UserAnswer) {
-    
     //return this.http.post('https://hanyadib606.bsite.net/api/UserAnswers', data);
     return this.http.post('https://localhost:44355/api/UserAnswers', data);
   }
