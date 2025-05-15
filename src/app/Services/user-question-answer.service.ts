@@ -27,7 +27,6 @@ export class UserQuestionAnswerService {
     return this.http.get<UserQuestionAnswerManualVM>(`https://hanyadib606.bsite.net/api/UserQuestionAnswerManual?QuizId=${quizId}`, { headers });
   }
 
-  // Add this to user-question-answer.service.ts
 postUserAnswerByAdmin(data: {
   userId: string;
   quizId: number;
