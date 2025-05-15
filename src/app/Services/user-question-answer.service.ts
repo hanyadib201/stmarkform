@@ -7,7 +7,7 @@ import { UserQuestionAnswerManualVM } from '../Models/question-manual-vm';
   providedIn: 'root',
 })
 export class UserQuestionAnswerService {
-  private apiUrl = 'https://localhost:44355/api/UserQuestionAnswerManual';
+  private apiUrl = 'https://hanyadib606.bsite.net/api/UserQuestionAnswerManual';
 
   constructor(private http: HttpClient) {}
 
@@ -24,7 +24,7 @@ export class UserQuestionAnswerService {
       ...(questionType ? { QuestionType: questionType } : {}),
     });
 
-    return this.http.get<UserQuestionAnswerManualVM>(`https://localhost:44355/api/UserQuestionAnswerManual?QuizId=${quizId}`, { headers });
+    return this.http.get<UserQuestionAnswerManualVM>(`https://hanyadib606.bsite.net/api/UserQuestionAnswerManual?QuizId=${quizId}`, { headers });
   }
 
   // Add this to user-question-answer.service.ts

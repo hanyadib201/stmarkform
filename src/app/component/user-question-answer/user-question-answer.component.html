@@ -1,36 +1,24 @@
 <div *ngIf="data">
   <h2>المسابقة: {{ data.quizName }}</h2>
-  
+
   <div *ngFor="let user of data.users">
     <h3>الاسم: {{ user.userName }}</h3>
-    
-    <table border="1" style="width: 100%; margin-bottom: 20px;">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Degree</th>
-          <th>Answer</th>
-          <th>Submit Degree</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let q of user.questions">
-          <td>{{ q.title }}</td>
-          <td>{{ q.degree }}</td>
-          <td>{{ q.answer }}</td>
-          <td>
-            <input
-              type="number"
-              min="0"
-              max="{{ q.degree }}"
-              [(ngModel)]="q.submittedDegree"
-            />
-          </td>
-  <button (click)="submitDegrees()">Submit Degrees</button>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 
-  <!-- <button (click)="submitDegrees()">Submit Degrees</button> -->
+    <div *ngFor="let q of user.questions" class="question-block" style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 8px;">
+      <p><strong>السؤال:</strong> {{ q.title }}</p>
+      <p><strong>الدرجة النهائية:</strong> {{ q.degree }}</p>
+      <p><strong>إجابة الطالب:</strong> {{ q.answer }}</p>
+
+      <label>
+        <strong>الدرجة المعطاة:</strong>
+        <input type="number" min="0" [max]="q.degree" [(ngModel)]="q.submittedDegree" [disabled]="q.isSubmitted" />
+      </label>
+
+      <!-- زر إرسال يظهر فقط إذا لم يتم الإرسال -->
+      <button *ngIf="!q.isSubmitted" (click)="submitSingleDegree(user.id, quizId, q, user.userName)">إرسال الدرجة</button>
+
+      <!-- تأكيد بعد الإرسال -->
+      <span *ngIf="q.isSubmitted" style="color: green;">✅ تم الإرسال</span>
+    </div>
+  </div>
 </div>

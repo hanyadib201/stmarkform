@@ -40,6 +40,11 @@ export class UserQuestionAnswerComponent implements OnInit {
       .getUserQuestionAnswers(this.quizId, questionId, userId, questionType)
       .subscribe({
         next: (res) => {
+           res.users.forEach(user => {
+        user.questions.forEach(q => {
+          (q as any).isSubmitted = false;
+        });
+      });
           this.data = res;
         },
         error: (err) => {
@@ -64,7 +69,10 @@ export class UserQuestionAnswerComponent implements OnInit {
 
         this.userAnswerService.postUserAnswerByAdmin(payload).subscribe({
           next: (res) => {
+            
+            
             alert(`✅ Submitted for user ${user.userName}, question "${question.title}"`);
+
           },
           error: (err) => {
             console.error(`❌ Failed to submit for user ${user.userName}, question "${question.title}"`, err);
@@ -77,4 +85,30 @@ export class UserQuestionAnswerComponent implements OnInit {
 
   this.message = hasError ? 'حدثت بعض الأخطاء أثناء الإرسال' : 'تم إرسال الدرجات بنجاح';
 }
+
+submitSingleDegree(userId: string, quizId: number, question: any, userName: string) {
+  if (question.submittedDegree == null || question.submittedDegree < 0) {
+    alert("أدخل درجة صحيحة أولاً.");
+    return;
+  }
+
+  const payload = {
+    userId: userId,
+    quizId: quizId,
+    questionId: question.questionId,
+    degree: question.submittedDegree
+  };
+
+  this.userAnswerService.postUserAnswerByAdmin(payload).subscribe({
+    next: () => {
+      alert(`✅ تم إرسال درجة السؤال "${question.title}" للمستخدم ${userName}`);
+      question.isSubmitted = true; // إخفاء الزر بعد الإرسال
+    },
+    error: (err) => {
+      console.error(`❌ فشل في إرسال درجة السؤال "${question.title}" للمستخدم ${userName}`, err);
+    }
+  });
+}
+
+
 }
