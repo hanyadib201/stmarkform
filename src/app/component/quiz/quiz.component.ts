@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Quiz } from '../../Models/quiz';
 import { QuizService } from '../../Services/quiz.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { UserAnswer } from '../../Models/user-answer';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -10,7 +10,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-quiz',
   standalone: true,
-  imports: [FormsModule ,CommonModule],
+  imports: [FormsModule ,CommonModule,RouterModule],
   templateUrl: './quiz.component.html',
   styleUrl: './quiz.component.css'
 })
@@ -26,7 +26,8 @@ export class QuizComponent implements OnInit {
   constructor(
     private quizService: QuizService,
     private route: ActivatedRoute,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -127,6 +128,7 @@ export class QuizComponent implements OnInit {
         console.log('Answers submitted successfully:', res);
         alert("sending");
         this.resetQuizState();
+        this.router.navigate(['/finished']);
       },
       error: (err) => {
         console.error('Error submitting answers:', err);

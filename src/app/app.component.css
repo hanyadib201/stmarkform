@@ -2,7 +2,7 @@
 html, body {
     height: 100%; /* Ensure full height of the page */
     margin: 20; /* Remove default margin */
-background: linear-gradient(to right, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), #6a11cb;
+  background-color: #f0f0f0;
 
     font-family: Arial, sans-serif; /* Set default font */
      direction: rtl;
