@@ -101,7 +101,7 @@ submitSingleDegree(userId: string, quizId: number, question: any, userName: stri
 
   this.userAnswerService.postUserAnswerByAdmin(payload).subscribe({
     next: () => {
-      alert(`✅ تم إرسال درجة السؤال "${question.title}" للمستخدم ${userName}`);
+      // alert(`✅ تم إرسال درجة السؤال "${question.title}" للمستخدم ${userName}`);
       question.isSubmitted = true; // إخفاء الزر بعد الإرسال
     },
     error: (err) => {

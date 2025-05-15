@@ -4,6 +4,7 @@ export interface QuestionManualVM {
   answer: string;
   questionId:number ;
   submittedDegree?: number; // لدرجة يقوم المستخدم بإدخالها
+  isSubmitted : any ;
 }
 
 export interface UserVM {
